@@ -1,7 +1,6 @@
 //Computer Choice
 function getComputerChoice() {
     let randomN = Math.floor(Math.random() * 3);
-    console.log(randomN);
     if (randomN == 0) {
         computerSelection = 'Rock';
     } else if (randomN == 1){
@@ -15,17 +14,36 @@ function getComputerChoice() {
 //User Choice
 function getUserChoice() {
     let userPrompt = prompt('Rock, Paper, or Scissors?').toLowerCase();
-    console.log(userPrompt);
     if (userPrompt == 'rock') {
-        userSelection = 'Rock';
+        userSelection = 'Rock';  
     } else if (userPrompt == 'paper') {
-        userSelection = 'Paper';
+        userSelection = 'Paper';  
     } else if (userPrompt == 'scissors' || userPrompt == 'scissor') {
-        userSelection = 'Scissors';
+        userSelection = 'Scissors'; 
     } else {
         alert ('Please type either rock, paper, or scissors');
         getUserChoice();
     }
 }
-getComputerChoice();
-getUserChoice();
+
+function roundEval() {
+    getComputerChoice();
+    getUserChoice();
+    console.log(`You chose ${userSelection}!`)
+    console.log(`The Computer chose ${computerSelection}!`);
+    if (
+    userSelection == 'Rock' && computerSelection == 'Scissors' || 
+    userSelection == 'Paper' && computerSelection == 'Rock' || 
+    userSelection == 'Scissors' && computerSelection == 'paper' ){
+        console.log('You Win!')
+        return 1;
+    } else if (userSelection == computerSelection) {
+        console.log('Its a Tie!')
+        return 0;
+    } else {
+        console.log('You Lost!')
+        return 2;
+    }
+    
+}
+roundEval();
