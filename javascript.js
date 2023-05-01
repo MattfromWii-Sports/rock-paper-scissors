@@ -26,6 +26,7 @@ function getUserChoice() {
     }
 }
 
+//Round
 function roundEval() {
     getComputerChoice();
     getUserChoice();
@@ -44,6 +45,35 @@ function roundEval() {
         console.log('You Lost!')
         return 2;
     }
-    
 }
-roundEval();
+
+//Round Score
+function roundScore() {
+    let round = roundEval();
+    if (round == 1) {
+        userScore += 1;
+    } else if (round == 2) {
+        computerScore +=1;
+    } else {
+        userScore += 1;
+        computerScore += 1;
+    }
+    console.log(`${userScore} - ${computerScore}`);
+}
+
+//Game of 5
+function game() {
+    for (let i=0; i<5; i++) {
+        roundScore();
+    }
+    if (userScore > computerScore) {
+        console.log('You Won Against The Computer!');
+    } else if (userScore < computerScore) {
+        console.log('You Lost Against The Computer!');
+    } else {
+        console.log('Its A Tie, That Was Unlikely!');
+    }
+}
+let userScore = 0;
+let computerScore = 0;
+game();
