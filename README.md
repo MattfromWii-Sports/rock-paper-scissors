@@ -2,8 +2,12 @@
 
 Started 4/28/23 (OP)
 
-1. Prompt the User, rock, paper, or scissors (Case Insensitive)
-2. The Code will choose randomly between rock, paper, or scissors
-3. The Player selection and Computer selection will be evaluated and the results will be returned
-4. A new function will use the previous functions and 5 games will be played; the individual results 
-   will be logged until it is tallied and announced at the end
+1. User will tap one of three buttons
+2. The button's border will be highlighted, and the eventlisteners will be deactivated
+3. A function will get and store the the computing player value (for Calculations), and the text player value (for text content)
+4. Text about the player's choice will be added to an empty div
+5. A function will randomly choose between the three choices. It will get and store the the computing player value (for Calculations), and the text player value (for text content)
+6. The generated choice will be highlighted
+7. Text about the computer's choice will be added to an empty div
+8. The variables taken from both functions will be evaluated, and text about the winner will be added to an empty div
+9. Two variables will keep track of the points until 5 points is reached (For loop)
