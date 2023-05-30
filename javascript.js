@@ -1,5 +1,9 @@
-//Variables In Main
+//Variables And Elements In Main
 let typeValue;
+const playerChoiceText = document.querySelector('.player-choice.text');
+const computerChoiceText = document.querySelector('.computer-choice.text');
+const resultText = document.querySelector('.result.text');
+const roundText = document.querySelector('.tally.text');
 
 //Player Choice event listener, Main Function
 const playerChoices = document.querySelectorAll('.left-column > .box');
