@@ -3,8 +3,8 @@
 Started 4/28/23 (OP)
 
 1. User will tap one of three buttons
-2. The button's border will be highlighted, and the eventlisteners will be deactivated
-3. A function will get and store the the computing player value (for Calculations), and the text player value (for text content)
+2. A function will get and store the the computing player value (for Calculations), and the text player value (for text content)
+3. The button's border will be highlighted, and the eventlisteners will be deactivated
 4. Text about the player's choice will be added to an empty div
 5. A function will randomly choose between the three choices. It will get and store the the computing player value (for Calculations), and the text player value (for text content)
 6. The generated choice will be highlighted

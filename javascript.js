@@ -1,14 +1,26 @@
-//Player Choice event listener
+//Variables In Main
+let typeValue;
+
+//Player Choice event listener, Main Function
 const playerChoices = document.querySelectorAll('.left-column > .box');
 playerChoices.forEach(btn => btn.addEventListener('click', main));
 function main() {
-    let typeValue = this.dataset.val
-    if (typeValue == 0) {
-        typeName = 'rock';
-    } else if (typeValue == 1) {
-        typeName = 'paper'
-    } else {
-        typeName = 'scissor'
-    }
+    playerTypeValue = this.dataset.val;
+    let typeName = userChoice();
+    console.log(typeValue);
     console.log(typeName);
+
+}
+
+//Player values, calculation and text
+function userChoice() {
+    if (playerTypeValue == 0) {
+        return 'rock';
+    } else if (playerTypeValue == 1) {
+        return 'paper';
+    } else if (playerTypeValue == 2) {
+        return 'scissor';
+    } else {
+        return 'error';
+    }
 }
