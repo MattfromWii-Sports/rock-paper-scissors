@@ -61,6 +61,12 @@ h1 {
     border: 2px solid blue;
 }
 
+/*Highlight class*/
+.highlight {
+    border: 5px solid #FFEF00;
+    transform: scale(1.1);
+}
+
 /*Images*/
 div.box > img {
     object-fit: cover;

@@ -5,11 +5,12 @@ let typeValue;
 const playerChoices = document.querySelectorAll('.left-column > .box');
 playerChoices.forEach(btn => btn.addEventListener('click', main));
 function main() {
-    playerTypeValue = this.dataset.val;
-    let typeName = userChoice();
-    console.log(typeValue);
-    console.log(typeName);
-
+    playerTypeValue = this.dataset.val; /*For round calculations*/
+    let playerTypeName = userChoice(); /*For player text */
+    this.classList.add('highlight');
+    playerChoices.forEach(btn => btn.removeEventListener('click', main));
+    console.log(playerTypeValue);
+    console.log(playerTypeName);
 }
 
 //Player values, calculation and text
