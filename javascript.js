@@ -1,6 +1,6 @@
 //Variables And Elements In Main
 let typeValue;
-const playerChoiceText = document.querySelector('.player-choice.text');
+let playerTypeName;
 const computerChoiceText = document.querySelector('.computer-choice.text');
 const resultText = document.querySelector('.result.text');
 const roundText = document.querySelector('.tally.text');
@@ -10,22 +10,31 @@ const playerChoices = document.querySelectorAll('.left-column > .box');
 playerChoices.forEach(btn => btn.addEventListener('click', main));
 function main() {
     playerTypeValue = this.dataset.val; /*For round calculations*/
-    let playerTypeName = userChoice(); /*For player text */
+    console.log(playerTypeValue);
+    playerTypeName = userChoice(); /*For player text */
+    console.log(playerTypeName);
     this.classList.add('highlight');
     playerChoices.forEach(btn => btn.removeEventListener('click', main));
-    console.log(playerTypeValue);
-    console.log(playerTypeName);
+    setTimeout(playerChoiceF, 200);
 }
 
 //Player values, calculation and text
 function userChoice() {
     if (playerTypeValue == 0) {
-        return 'rock';
+        return 'Rock';
     } else if (playerTypeValue == 1) {
-        return 'paper';
+        return 'Paper';
     } else if (playerTypeValue == 2) {
-        return 'scissor';
+        return 'Scissor';
     } else {
-        return 'error';
+        return 'Error';
     }
+}
+
+//Computer values, calculation
+
+//text timeout functions
+function playerChoiceF() {
+    const playerChoiceText = document.querySelector('.player-choice.text');
+    playerChoiceText.textContent = `You chose ${playerTypeName}`;
 }
