@@ -22,21 +22,25 @@ function round() {
     console.log(computerTypeName);
     currentPChoice.classList.add('highlight');
     playerChoices.forEach(btn => btn.removeEventListener('click', round));
-    setTimeout(playerChoiceF, 200);
+    playerText();
+    computerTextBox();
 }
 
-//Computer values, calculation
+//Computer values
 function randomComputer() {
     let randomN = Math.floor(Math.random() * 3);
     return document.querySelector(`[data-value-cpu="${randomN}"]`);
 }
 
-//text timeout functions
-function playerChoiceF() {
+//text functions & Timeout
+function playerText() {
     const playerChoiceText = document.querySelector('.player-choice.text');
     playerChoiceText.textContent = `You chose ${playerTypeName}`;
 }
-function computerChoiceF() {
+function computerTextBox() {
+    setTimeout(function() {
     const computerChoiceText = document.querySelector('.computer-choice.text');
-    computerChoiceText.textContent = `You chose ${computerTypeName}`;
+    randomComputer().classList.add('highlight');
+    computerChoiceText.textContent = `The Computer chose ${computerTypeName}`;
+    }, 900)
 }
