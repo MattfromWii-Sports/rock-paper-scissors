@@ -50,7 +50,7 @@ function roundResult() {
     setTimeout(function() {
     const resultText = document.querySelector('.result.text');
     if (calculateWinner == 0) {
-        resultText.textContent = 'Its A Tie';
+        resultText.textContent = 'Its A Tie!';
     } else if (calculateWinner == 1 || calculateWinner == -2) {
         resultText.textContent = `${playerTypeName} beats ${computerTypeName}, You Win!`;
     } else {
