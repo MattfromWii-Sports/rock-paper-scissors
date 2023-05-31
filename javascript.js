@@ -7,25 +7,32 @@ let result;
 let score;
 let calculateWinner;
 let currentPChoice;
+let playerPoints = 0;
+let computerPoints = 0;
 
 //Player Choice event listener, Main Function
 const playerChoices = document.querySelectorAll('.left-column > .box');
 playerChoices.forEach(btn => btn.addEventListener('click', round));
+
+//Full Game
+
+//1 Round
 function round() {
     currentPChoice = this;
     currentCChoice = randomComputer();
+    playerChoices.forEach(btn => btn.removeEventListener('click', round));
     playerTypeValue = currentPChoice.dataset.value; /*For round calculations*/
     playerTypeName = currentPChoice.dataset.type; /*For player text */
+    currentPChoice.classList.add('highlight');
+    playerText();
     computerTypeValue = currentCChoice.dataset.valueCpu; /*For round calculations*/
     computerTypeName = currentCChoice.dataset.typeCpu; /*For player text */
+    computerTextBox();
     console.log(playerTypeValue);
     console.log(computerTypeValue); 
     calculateWinner = parseInt(playerTypeValue) - parseInt(computerTypeValue);
-    currentPChoice.classList.add('highlight');
-    playerChoices.forEach(btn => btn.removeEventListener('click', round));
-    playerText();
-    computerTextBox();
     roundResult();
+    scoreTally();
 }
 
 //Calculations; Computer And Results
@@ -44,7 +51,7 @@ function computerTextBox() {
     const computerChoiceText = document.querySelector('.computer-choice.text');
     currentCChoice.classList.add('highlight');
     computerChoiceText.textContent = `The Computer chose ${computerTypeName}`;
-    }, 900)
+    }, 1400)
 }
 function roundResult() {
     setTimeout(function() {
@@ -53,9 +60,17 @@ function roundResult() {
         resultText.textContent = 'Its A Tie!';
     } else if (calculateWinner == 1 || calculateWinner == -2) {
         resultText.textContent = `${playerTypeName} beats ${computerTypeName}, You Win!`;
+        playerPoints += 1;
     } else {
         resultText.textContent = `${computerTypeName} beats ${playerTypeName}, You Lose!`;
+        computerPoints += 1;
     }
-    }, 1800)
+    }, 2200)
+}
+function scoreTally() {
+    setTimeout(function() {
+        const tally = document.querySelector('.tally.text');
+        tally.textContent = `${playerPoints} -- ${computerPoints}`
+    }, 3000)
 }
 
