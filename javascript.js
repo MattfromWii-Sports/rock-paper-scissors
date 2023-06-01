@@ -47,10 +47,10 @@ function textPCRT() {
             resultText.textContent = `${currentCChoice.dataset.typeCpu} beats ${currentPChoice.dataset.type}, You Lose!`;
             computerPoints += 1;
         }
-    }, 2500)
+    }, 2800)
     setTimeout(function() {  
         tally.textContent = `${playerPoints} -- ${computerPoints}`
-    }, 3500)
+    }, 4000)
 }
 function resetAll() {
     setTimeout(function() {
@@ -59,5 +59,5 @@ function resetAll() {
         currentCChoice.classList.remove('highlight');
         computerChoiceText.textContent = '';
         resultText.textContent = '';
-    }, 6500)
+    }, 8000)
 }
