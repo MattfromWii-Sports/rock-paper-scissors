@@ -28,6 +28,7 @@ function round() {
     computerTypeValue = currentCChoice.dataset.valueCpu; /*For round calculations*/
     computerTypeName = currentCChoice.dataset.typeCpu; /*For player text */ 
     textPCRT();
+    resetAll();
 }
 
 //Calculations; Computer And Results
@@ -36,7 +37,7 @@ function randomComputer() {
     return document.querySelector(`[data-value-cpu="${randomN}"]`);
 }
 
-//text functions & Timeout
+//text & highlight functions
 function textPCRT() {
     playerChoiceText.textContent = `You chose ${playerTypeName}`;
     currentPChoice.classList.add('highlight');
@@ -54,8 +55,17 @@ function textPCRT() {
             resultText.textContent = `${computerTypeName} beats ${playerTypeName}, You Lose!`;
             computerPoints += 1;
         }
-    }, 2200)
+    }, 2400)
     setTimeout(function() {  
         tally.textContent = `${playerPoints} -- ${computerPoints}`
-    }, 3000)
+    }, 3400)
+}
+function resetAll() {
+    setTimeout(function() {
+        currentPChoice.classList.remove('highlight');
+        playerChoiceText.textContent = '';
+        currentCChoice.classList.remove('highlight');
+        computerChoiceText.textContent = '';
+        resultText.textContent = '';
+    }, 6400)
 }
