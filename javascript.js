@@ -5,7 +5,6 @@ let computerValue;
 let computerTypeName;
 let result;
 let score;
-let calculateWinner;
 let playerPoints = 0;
 let computerPoints = 0;
 const playerChoiceText = document.querySelector('.player-choice.text');
@@ -31,7 +30,6 @@ function round() {
     computerTypeValue = currentCChoice.dataset.valueCpu; /*For round calculations*/
     computerTypeName = currentCChoice.dataset.typeCpu; /*For player text */
     computerTextBox();
-    calculateWinner = parseInt(playerTypeValue) - parseInt(computerTypeValue);
     roundResult();
     scoreTally();
 }
@@ -54,9 +52,9 @@ function computerTextBox() {
 }
 function roundResult() {
     setTimeout(function() {
-    if (calculateWinner == 0) {
+    if (parseInt(playerTypeValue) == parseInt(computerTypeValue)) {
         resultText.textContent = 'Its A Tie!';
-    } else if (calculateWinner == 1 || calculateWinner == -2) {
+    } else if (parseInt(playerTypeValue) - parseInt(computerTypeValue) == 1 || parseInt(playerTypeValue) - parseInt(computerTypeValue) == -2) {
         resultText.textContent = `${playerTypeName} beats ${computerTypeName}, You Win!`;
         playerPoints += 1;
     } else {
