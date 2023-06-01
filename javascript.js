@@ -3,8 +3,6 @@ let typeValue;
 let playerTypeName;
 let computerValue;
 let computerTypeName;
-let result;
-let score;
 let playerPoints = 0;
 let computerPoints = 0;
 const playerChoiceText = document.querySelector('.player-choice.text');
