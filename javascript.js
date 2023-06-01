@@ -6,9 +6,12 @@ let computerTypeName;
 let result;
 let score;
 let calculateWinner;
-let currentPChoice;
 let playerPoints = 0;
 let computerPoints = 0;
+const playerChoiceText = document.querySelector('.player-choice.text');
+const resultText = document.querySelector('.result.text');
+const computerChoiceText = document.querySelector('.computer-choice.text');
+const tally = document.querySelector('.tally.text');
 
 //Player Choice event listener, Main Function
 const playerChoices = document.querySelectorAll('.left-column > .box');
@@ -18,7 +21,7 @@ playerChoices.forEach(btn => btn.addEventListener('click', round));
 
 //1 Round
 function round() {
-    currentPChoice = this;
+    let currentPChoice = this;
     currentCChoice = randomComputer();
     playerChoices.forEach(btn => btn.removeEventListener('click', round));
     playerTypeValue = currentPChoice.dataset.value; /*For round calculations*/
@@ -28,8 +31,6 @@ function round() {
     computerTypeValue = currentCChoice.dataset.valueCpu; /*For round calculations*/
     computerTypeName = currentCChoice.dataset.typeCpu; /*For player text */
     computerTextBox();
-    console.log(playerTypeValue);
-    console.log(computerTypeValue); 
     calculateWinner = parseInt(playerTypeValue) - parseInt(computerTypeValue);
     roundResult();
     scoreTally();
@@ -43,19 +44,16 @@ function randomComputer() {
 
 //text functions & Timeout
 function playerText() {
-    const playerChoiceText = document.querySelector('.player-choice.text');
     playerChoiceText.textContent = `You chose ${playerTypeName}`;
 }
 function computerTextBox() {
     setTimeout(function() {
-    const computerChoiceText = document.querySelector('.computer-choice.text');
     currentCChoice.classList.add('highlight');
     computerChoiceText.textContent = `The Computer chose ${computerTypeName}`;
     }, 1400)
 }
 function roundResult() {
     setTimeout(function() {
-    const resultText = document.querySelector('.result.text');
     if (calculateWinner == 0) {
         resultText.textContent = 'Its A Tie!';
     } else if (calculateWinner == 1 || calculateWinner == -2) {
@@ -68,8 +66,7 @@ function roundResult() {
     }, 2200)
 }
 function scoreTally() {
-    setTimeout(function() {
-        const tally = document.querySelector('.tally.text');
+    setTimeout(function() {  
         tally.textContent = `${playerPoints} -- ${computerPoints}`
     }, 3000)
 }
