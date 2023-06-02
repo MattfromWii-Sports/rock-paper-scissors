@@ -10,21 +10,21 @@
         <h1>ROCK | PAPER | SCISSORS</h1>
         <div class="main">
             <div class="left-column panel">
-                <div class="box static" id="rockBtn">
+                <div class="box static" id="rockBtn" data-type="Rock">
                     <img src="images/rock.png" alt="image of a rock">
                 </div>
-                <div class="box static" id="paperBtn">
+                <div class="box static" id="paperBtn" data-type="Paper">
                     <img id="paper-image" src="images/paper.png" alt="image of paper">
                 </div>
-                <div class="box static" id="scissorBtn">
+                <div class="box static" id="scissorBtn" data-type="Scissor">
                     <img id="scissor-image" src="images/scissor.png" alt="image of a scissor">
                 </div>
             </div>
             <div class="middle-column">
-                <div class="player-choice text"></div>
-                <div class="computer-choice text"></div>
-                <div class="result text"></div>
-                <div class="tally text"></div>
+                <div id="player-choice" class="text"></div>
+                <div id="computer-choice" class="text"></div>
+                <div id="result" class="text"></div>
+                <div id="tally" class="text"></div>
             </div>
             <div class="right-column panel">
                 <div class="box staticC" data-type-cpu="Rock">
