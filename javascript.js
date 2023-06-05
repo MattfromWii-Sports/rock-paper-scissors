@@ -66,11 +66,3 @@ function findWinner(playerType, computerType) {
         computerPoints += 1;
     }
 }
-
-function reset() {
-    playerDiv.classList.remove('highlight'); 
-    computerDiv.classList.remove('highlight');
-    playerChoiceText.textContent = '';
-    computerChoiceText.textContent = '';
-    resultText.textContent = '';
-}
