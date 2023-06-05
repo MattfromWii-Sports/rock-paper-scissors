@@ -1,6 +1,7 @@
 //Variables And Elements In Main
-let currentCChoice;
-let currentPChoice;
+let stat = 'notActive';
+let playerChoice;
+let computerChoice;
 let playerPoints = 0;
 let computerPoints = 0;
 const playerChoiceText = document.getElementById('player-choice');
@@ -16,16 +17,30 @@ rockBtn.addEventListener('click', () => round('Rock'));
 paperBtn.addEventListener('click', () => round('Paper'));
 scissorBtn.addEventListener('click', () => round('Scissor'));
 
-//1 Round
-function round() {
+//Round
+function round(playerSelection) {
+    if (stat === 'notActive') {
+        stat = 'active';
+        playerChoice = playerSelection;
+        computerChoice = randomComputer();
+        document.querySelector(`div[data-type='${playerChoice}']`).classList.add('highlight');
+        playerChoiceText.textContent = `You chose ${playerChoice}`;
+        setTimeout(function() {
+            document.querySelector(`div[data-type-cpu='${computerChoice}]`);
+            computerChoiceText.textContent = `The Computer chose ${computerChoice}`;
+        }, 1500)
+        setTimeout(function() {stat = 'true'}, 8000);
+    }
+}
 
+function randomComputer() {
+    const randomN = ['Rock', 'Paper', 'Scissor'];
+    return randomN[Math.floor(Math.random() * randomN.length)];
 }
 
 /*
 //text & highlight functions
 function textPCRT() {
-    playerChoiceText.textContent = `You chose ${currentPChoice}`;
-    currentPChoice.classList.add('highlight');
     setTimeout(function() {
         currentCChoice.classList.add('highlight');
         computerChoiceText.textContent = `The Computer chose ${currentCChoice.dataset.typeCpu}`;
@@ -44,11 +59,6 @@ function textPCRT() {
     setTimeout(function() {  
         tally.textContent = `${playerPoints} -- ${computerPoints}`
     }, 4000)
-}
-//Calculations; Computer And Results
-function randomComputer() {
-    let randomN = Math.floor(Math.random() * 3);
-    return document.querySelector(`[data-value-cpu="${randomN}"]`);
 }
 
 //text & highlight functions
@@ -82,4 +92,4 @@ function resetAll() {
         computerChoiceText.textContent = '';
         resultText.textContent = '';
     }, 7500)
-}
+}*/
