@@ -8,7 +8,6 @@ const playerChoiceText = document.getElementById('player-choice');
 const computerChoiceText = document.getElementById('computer-choice');
 const resultText = document.getElementById('result');
 const tally = document.getElementById('tally');
-const playerChoices = document.querySelectorAll('.left-column > .box');
 const rockBtn = document.getElementById('rockBtn');
 const paperBtn = document.getElementById('paperBtn');
 const scissorBtn = document.getElementById('scissorBtn');
@@ -23,21 +22,32 @@ function round(playerSelection) {
         stat = 'active';
         playerChoice = playerSelection;
         computerChoice = randomComputer();
-        document.querySelector(`div[data-type='${playerChoice}']`).classList.add('highlight');
-        ('highlight');
+        const playerDiv = document.querySelector(`div[data-type='${playerChoice}']`)
+        const computerDiv = document.querySelector(`div[data-type-cpu='${computerChoice}']`)
+        playerDiv.classList.add('highlight')
         playerChoiceText.textContent = `You chose ${playerChoice}`;
         setTimeout(function() {
-            document.querySelector(`div[data-type-cpu='${computerChoice}']`).classList.add('highlight');
+            computerDiv.classList.add('highlight');
             computerChoiceText.textContent = `The Computer chose ${computerChoice}`;
         }, 1500)
         setTimeout(function() {
             findWinner(playerChoice, computerChoice);
         }, 2500)
-        setTimeout(function() {stat = 'notActive'}, 5000);
+        setTimeout(function() {  
+            tally.textContent = `${playerPoints} -- ${computerPoints}`
+        }, 3600)
+        setTimeout(function() {
+            playerDiv.classList.remove('highlight');
+            computerDiv.classList.remove('highlight');
+            playerChoiceText.textContent = '';
+            computerChoiceText.textContent = '';
+            resultText.textContent = '';
+        }, 5000)
+        setTimeout(function() {stat = 'notActive'}, 5200);
     }
 }
 
-function randomComputer() { //returns computer choice
+function randomComputer() {
     const randomN = ['Rock', 'Paper', 'Scissor'];
     return randomN[Math.floor(Math.random() * randomN.length)];
 }
@@ -56,57 +66,11 @@ function findWinner(playerType, computerType) {
         computerPoints += 1;
     }
 }
-/*
-function textPCRT() {
-    setTimeout(function() {
-        currentCChoice.classList.add('highlight');
-        computerChoiceText.textContent = `The Computer chose ${currentCChoice.dataset.typeCpu}`;
-    }, 1500)
-    setTimeout(function() {
-        if (parseInt(currentPChoice.dataset.value) == parseInt(currentCChoice.dataset.valueCpu)) {
-            resultText.textContent = 'Its A Tie!';
-        } else if (parseInt(currentPChoice.dataset.value) - parseInt(currentCChoice.dataset.valueCpu) == 1 || parseInt(currentPChoice.dataset.value) - parseInt(currentCChoice.dataset.valueCpu) == -2) {
-            resultText.textContent = `${currentPChoice.dataset.type} beats ${currentCChoice.dataset.typeCpu}, You Win!`;
-            playerPoints += 1;
-        } else {
-            resultText.textContent = `${currentCChoice.dataset.typeCpu} beats ${currentPChoice.dataset.type}, You Lose!`;
-            computerPoints += 1;
-        }
-    }, 2800)
-    setTimeout(function() {  
-        tally.textContent = `${playerPoints} -- ${computerPoints}`
-    }, 4000)
-}
 
-//text & highlight functions
-function textPCRT() {
-    playerChoiceText.textContent = `You chose ${currentPChoice.dataset.type}`;
-    currentPChoice.classList.add('highlight');
-    setTimeout(function() {
-        currentCChoice.classList.add('highlight');
-        computerChoiceText.textContent = `The Computer chose ${currentCChoice.dataset.typeCpu}`;
-    }, 1500)
-    setTimeout(function() {
-        if (parseInt(currentPChoice.dataset.value) == parseInt(currentCChoice.dataset.valueCpu)) {
-            resultText.textContent = 'Its A Tie!';
-        } else if (parseInt(currentPChoice.dataset.value) - parseInt(currentCChoice.dataset.valueCpu) == 1 || parseInt(currentPChoice.dataset.value) - parseInt(currentCChoice.dataset.valueCpu) == -2) {
-            resultText.textContent = `${currentPChoice.dataset.type} beats ${currentCChoice.dataset.typeCpu}, You Win!`;
-            playerPoints += 1;
-        } else {
-            resultText.textContent = `${currentCChoice.dataset.typeCpu} beats ${currentPChoice.dataset.type}, You Lose!`;
-            computerPoints += 1;
-        }
-    }, 2800)
-    setTimeout(function() {  
-        tally.textContent = `${playerPoints} -- ${computerPoints}`
-    }, 4000)
+function reset() {
+    playerDiv.classList.remove('highlight'); 
+    computerDiv.classList.remove('highlight');
+    playerChoiceText.textContent = '';
+    computerChoiceText.textContent = '';
+    resultText.textContent = '';
 }
-function resetAll() {
-    setTimeout(function() {
-        currentPChoice.classList.remove('highlight');
-        playerChoiceText.textContent = '';
-        currentCChoice.classList.remove('highlight');
-        computerChoiceText.textContent = '';
-        resultText.textContent = '';
-    }, 7500)
-}*/
