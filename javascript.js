@@ -19,27 +19,44 @@ scissorBtn.addEventListener('click', () => round('Scissor'));
 
 //Round
 function round(playerSelection) {
-    if (stat === 'notActive') {
+    if (stat == 'notActive') {
         stat = 'active';
         playerChoice = playerSelection;
         computerChoice = randomComputer();
         document.querySelector(`div[data-type='${playerChoice}']`).classList.add('highlight');
+        ('highlight');
         playerChoiceText.textContent = `You chose ${playerChoice}`;
         setTimeout(function() {
-            document.querySelector(`div[data-type-cpu='${computerChoice}]`);
+            document.querySelector(`div[data-type-cpu='${computerChoice}']`).classList.add('highlight');
             computerChoiceText.textContent = `The Computer chose ${computerChoice}`;
         }, 1500)
-        setTimeout(function() {stat = 'true'}, 8000);
+        setTimeout(function() {
+            findWinner(playerChoice, computerChoice);
+        }, 2500)
+        setTimeout(function() {stat = 'notActive'}, 5000);
     }
 }
 
-function randomComputer() {
+function randomComputer() { //returns computer choice
     const randomN = ['Rock', 'Paper', 'Scissor'];
     return randomN[Math.floor(Math.random() * randomN.length)];
 }
 
+function findWinner(playerType, computerType) {
+    if (playerType == computerType) {
+        resultText.textContent = 'Its A Tie!';
+    } else if (
+    (playerType == 'Rock' && computerType == 'Scissor') || 
+    (playerType == 'Paper' && computerType == 'Rock') || 
+    (playerType == 'Scissor' && computerType == 'Paper')) {
+        resultText.textContent = `${playerChoice} beats ${computerChoice}, You Win!`;
+        playerPoints += 1;
+    } else {
+        resultText.textContent = `${computerChoice} beats ${playerChoice}, You Lose!`;
+        computerPoints += 1;
+    }
+}
 /*
-//text & highlight functions
 function textPCRT() {
     setTimeout(function() {
         currentCChoice.classList.add('highlight');
