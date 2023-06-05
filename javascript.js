@@ -1,5 +1,5 @@
 //Variables And Elements In Main
-let stat = 'notActive';
+let stat = 'inactive';
 let playerChoice;
 let computerChoice;
 let playerPoints = 0;
@@ -18,7 +18,9 @@ scissorBtn.addEventListener('click', () => round('Scissor'));
 
 //Round
 function round(playerSelection) {
-    if (stat == 'notActive') {
+    if (playerPoints == 5 || computerPoints == 5) {
+        
+    } else if (stat == 'inactive') {
         stat = 'active';
         playerChoice = playerSelection;
         computerChoice = randomComputer();
@@ -43,7 +45,7 @@ function round(playerSelection) {
             computerChoiceText.textContent = '';
             resultText.textContent = '';
         }, 5000)
-        setTimeout(function() {stat = 'notActive'}, 5200);
+        setTimeout(function() {stat = 'inactive'}, 5200);
     }
 }
 
