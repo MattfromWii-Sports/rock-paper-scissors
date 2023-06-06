@@ -9,12 +9,14 @@ body {
 h1 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
+    color: rgb(40, 40, 40);
 }
 .small-text{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    margin-top: -30px;
 }
 .main {
     display: flex;
@@ -70,6 +72,31 @@ h1 {
 .highlight {
     border: 5px solid #FFEF00;
     transform: scale(1.1);
+}
+
+/*Modal box*/
+dialog {
+    padding: 35px 25px;
+    width: 300px;
+    height: 200px;
+    gap: 30px;
+    background-color: rgb(202, 255, 255);
+    border: 4px solid rgb(183, 255, 183);
+    translate: 0 25%;
+    text-align: center;
+}
+dialog::backdrop {
+    background-color: rgb(228, 228, 228);
+}
+.dialog-box > div {
+    font-size: 45px;
+    width: 300px;
+    margin-bottom: 30px;
+}
+.dialog-box > button {
+    font-size: 20px;
+    font-weight: 500;
+    width: 150px;
 }
 
 /*Images*/
