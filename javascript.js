@@ -22,15 +22,15 @@ resetBtn.addEventListener('click', resetAll);
 
 //Round
 function round(playerSelection) {
-    if (playerPoints == 5) {
+    if (playerPoints === 5) {
         tally.textContent = '';
         gameWinner.textContent = 'You Won! :)'
         dialog.showModal();
-    } else if (computerPoints == 5) {
+    } else if (computerPoints === 5) {
         tally.textContent = '';
         gameWinner.textContent = 'The Computer Won! :('
         dialog.showModal();
-    } else if (stat == 'inactive') {
+    } else if (stat === 'inactive') {
         stat = 'active';
         playerChoice = playerSelection;
         computerChoice = randomComputer();
@@ -65,12 +65,12 @@ function randomComputer() {
 }
 
 function findWinner(playerType, computerType) {
-    if (playerType == computerType) {
+    if (playerType === computerType) {
         resultText.textContent = 'Its A Tie!';
     } else if (
-    (playerType == 'Rock' && computerType == 'Scissor') || 
-    (playerType == 'Paper' && computerType == 'Rock') || 
-    (playerType == 'Scissor' && computerType == 'Paper')) {
+    (playerType === 'Rock' && computerType === 'Scissor') || 
+    (playerType === 'Paper' && computerType === 'Rock') || 
+    (playerType === 'Scissor' && computerType === 'Paper')) {
         resultText.textContent = `${playerChoice} beats ${computerChoice}, You Win!`;
         playerPoints += 1;
     } else {
