@@ -11,15 +11,25 @@ const tally = document.getElementById('tally');
 const rockBtn = document.getElementById('rockBtn');
 const paperBtn = document.getElementById('paperBtn');
 const scissorBtn = document.getElementById('scissorBtn');
+const dialog = document.querySelector('.dialog-box');
+const gameWinner = document.getElementById('game-winner');
+const resetBtn = document.getElementById('reset-game');
 
 rockBtn.addEventListener('click', () => round('Rock'));
 paperBtn.addEventListener('click', () => round('Paper'));
 scissorBtn.addEventListener('click', () => round('Scissor'));
+resetBtn.addEventListener('click', resetAll);
 
 //Round
 function round(playerSelection) {
-    if (playerPoints == 5 || computerPoints == 5) {
-        
+    if (playerPoints == 5) {
+        tally.textContent = '';
+        gameWinner.textContent = 'You Won! :)'
+        dialog.showModal();
+    } else if (computerPoints == 5) {
+        tally.textContent = '';
+        gameWinner.textContent = 'The Computer Won! :('
+        dialog.showModal();
     } else if (stat == 'inactive') {
         stat = 'active';
         playerChoice = playerSelection;
@@ -67,4 +77,10 @@ function findWinner(playerType, computerType) {
         resultText.textContent = `${computerChoice} beats ${playerChoice}, You Lose!`;
         computerPoints += 1;
     }
+}
+
+function resetAll() {
+    playerPoints = 0;
+    computerPoints = 0;
+    dialog.close();
 }
