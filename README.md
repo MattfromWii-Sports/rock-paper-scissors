@@ -2,15 +2,10 @@
 
 Started 4/28/23 (OP)
 
-1. User will tap one of three buttons.
-2. A function will check if the someone has reached 5 points, and if so a modal will appear; if not it will check if the status is active, and if inactive it will continue playing.
-3. The status will change from inactive to active.
-4. The Player's choice will be stored in a variable.
-5. The button's border will be highlighted, and the eventlisteners will be deactivated
-6. Text about the player's choice will be added to an empty div.
-7. A function will randomly choose between the three choices. It will get and store the computer's choice.
-8. The generated choice will be highlighted.
-9. Text about the computer's choice will be added to an empty div.
-10. The variables taken from both functions will be evaluated, and text about the winner will be added to an empty div.
-11. The total score so far will be added to an empty div.
-12. The status will be returned to an active value.
+Version 1 - June 7, 2023 
+    All function in Global Scope, event listeners slight delay
+Version 2 - Current build
+    Replace User choices' event listeners with an event delegator
+    Implement module pattern
+    Update to smoother transitions
+    Increase efficiency and responsiveness of code
