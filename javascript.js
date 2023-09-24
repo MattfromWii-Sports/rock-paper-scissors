@@ -1,29 +1,56 @@
-let stat = 'inactive';
-let playerChoice;
-let computerChoice;
+/*let stat = 'inactive';
 let playerPoints = 0;
 let computerPoints = 0;
 const playerChoiceText = document.getElementById('player-choice');
 const computerChoiceText = document.getElementById('computer-choice');
 const resultText = document.getElementById('result');
 const tally = document.getElementById('tally');
-const rockBtn = document.getElementById('rockBtn');
-const paperBtn = document.getElementById('paperBtn');
-const scissorBtn = document.getElementById('scissorBtn');
+
 const dialog = document.querySelector('.dialog-box');
 const gameWinner = document.getElementById('game-winner');
 const resetBtn = document.getElementById('reset-game');
 
-rockBtn.addEventListener('click', () => gameboard.round('Rock'));
-paperBtn.addEventListener('click', () => gameboard.round('Paper'));
-scissorBtn.addEventListener('click', () => gameboard.round('Scissor'));
-resetBtn.addEventListener('click', resetAll);
 
-//Add Event delegation for options, make variables private, make modules work
+
+resetBtn.addEventListener('click', gameboard.resetAll);
+*/
+let playerChoice = undefined;
+let computerChoice;
+
+const rockBtn = document.getElementById('rockBtn');
+const paperBtn = document.getElementById('paperBtn');
+const scissorBtn = document.getElementById('scissorBtn');
+rockBtn.addEventListener('click', () => gameboard.round(0));
+paperBtn.addEventListener('click', () => gameboard.round(1));
+scissorBtn.addEventListener('click', () => gameboard.round(2));
+
+const boxes = document.querySelectorAll('.panel > .box');
+//Make variables private, make modules work
 
 //Round
 const gameboard = (() => {
-    function round(playerSelection) {
+    const choices = ['Rock', 'Paper', 'Scissors'];
+    const round = (playerSelection) => {
+        console.log(playerSelection);
+        //if (playerSelection !== undefined) return;
+        playerChoice = parseInt(playerSelection);
+        const playerDiv = document.querySelector(`.left-column > div[data-number='${playerSelection}']`);
+        computerChoice = randomComputer();
+        const computerDiv = document.querySelector(`.right-column > div[data-number='${computerChoice}']`)
+        console.log(playerDiv);
+        console.log(computerDiv);
+        transitionDiv(playerDiv, computerDiv);
+    }
+    const randomComputer = () => {
+        const randomN = [0, 1, 2];
+        return randomN[Math.floor(Math.random() * randomN.length)];
+    }
+    const transitionDiv = (player, computer) => {
+        boxes.forEach(div => div.classList.add('center'));
+        player.classList.add('highlight');
+        computer.classList.add('highlight');
+    }
+    /*function round(playerSelection) {
         if (playerPoints === 5) {
             tally.textContent = '';
             gameWinner.textContent = 'You Won! :)'
@@ -86,7 +113,7 @@ const gameboard = (() => {
         computerPoints = 0;
         dialog.close();
     }
+    */
+    return {round};
 })();
-
-
 
