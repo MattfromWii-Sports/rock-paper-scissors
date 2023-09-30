@@ -79,6 +79,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     gap: 10%;
+    transition: all 1s ease;
 }
 .text {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

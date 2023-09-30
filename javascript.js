@@ -1,10 +1,6 @@
 /*let stat = 'inactive';
 let playerPoints = 0;
 let computerPoints = 0;
-const playerChoiceText = document.getElementById('player-choice');
-const computerChoiceText = document.getElementById('computer-choice');
-const resultText = document.getElementById('result');
-const tally = document.getElementById('tally');
 
 const dialog = document.querySelector('.dialog-box');
 const gameWinner = document.getElementById('game-winner');
@@ -15,8 +11,7 @@ const resetBtn = document.getElementById('reset-game');
 resetBtn.addEventListener('click', gameboard.resetAll);
 */
 let playerChoice = undefined;
-let computerChoice;
-
+let computerChoice = undefined;
 const rockBtn = document.getElementById('rockBtn');
 const paperBtn = document.getElementById('paperBtn');
 const scissorBtn = document.getElementById('scissorBtn');
@@ -24,11 +19,15 @@ rockBtn.addEventListener('click', () => gameboard.round(0));
 paperBtn.addEventListener('click', () => gameboard.round(1));
 scissorBtn.addEventListener('click', () => gameboard.round(2));
 
+const comparisonText = document.getElementById('comparison');
+const resultText = document.getElementById('result');
+const tally = document.getElementById('tally');
 const boxes = document.querySelectorAll('.panel > .box');
 //Make variables private, make modules work
 
 //Round
 const gameboard = (() => {
+    let playerMessage, computerMessage;
     const choices = ['Rock', 'Paper', 'Scissors'];
     const round = (playerSelection) => {
         console.log(playerSelection);
@@ -36,19 +35,37 @@ const gameboard = (() => {
         playerChoice = parseInt(playerSelection);
         const playerDiv = document.querySelector(`.left-column > div[data-number='${playerSelection}']`);
         computerChoice = randomComputer();
-        const computerDiv = document.querySelector(`.right-column > div[data-number='${computerChoice}']`)
+        const computerDiv = document.querySelector(`.right-column > div[data-number='${computerChoice}']`);
+        transitionChoiceIn(playerDiv, computerDiv); //center everything, highlight choicess
+        //insert check winner function
         console.log(playerDiv);
         console.log(computerDiv);
-        transitionDiv(playerDiv, computerDiv);
+        playerMessage = 'dfskdjfksdjf';
+        textTransition();
+    
     }
     const randomComputer = () => {
         const randomN = [0, 1, 2];
         return randomN[Math.floor(Math.random() * randomN.length)];
     }
-    const transitionDiv = (player, computer) => {
+    const transitionChoiceIn = (player, computer) => {
         boxes.forEach(div => div.classList.add('center'));
         player.classList.add('highlight');
         computer.classList.add('highlight');
+
+    }
+    const textTransition = () => { 
+        let statementString, statementDiv;
+        const textType = (statement, textdiv) => {
+            statementString = statement;
+            statementDiv = textdiv;
+            if (statementString !== '') {
+            textdiv.textContent += statementString.charAt(0);
+            statementString = statementString.substring(1);
+            setTimeout(textType, 100, statementString, statementDiv);
+            }
+        }
+        textType(playerMessage, comparisonText);
     }
     /*function round(playerSelection) {
         if (playerPoints === 5) {
