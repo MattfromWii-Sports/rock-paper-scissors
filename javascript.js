@@ -1,17 +1,12 @@
-/*let stat = 'inactive';
-let playerPoints = 0;
-let computerPoints = 0;
-
-const dialog = document.querySelector('.dialog-box');
+/*
 const gameWinner = document.getElementById('game-winner');
 const resetBtn = document.getElementById('reset-game');
-
-
 
 resetBtn.addEventListener('click', gameboard.resetAll);
 */
 let playerChoice = undefined;
 let computerChoice = undefined;
+
 const rockBtn = document.getElementById('rockBtn');
 const paperBtn = document.getElementById('paperBtn');
 const scissorBtn = document.getElementById('scissorBtn');
@@ -21,13 +16,16 @@ scissorBtn.addEventListener('click', () => gameboard.round(2));
 
 const comparisonText = document.getElementById('comparison');
 const resultText = document.getElementById('result');
-const tally = document.getElementById('tally');
+const tallyText = document.getElementById('tally');
+const dialog = document.querySelector('.dialog-box');
 const boxes = document.querySelectorAll('.panel > .box');
 //Make variables private, make modules work
 
 //Round
 const gameboard = (() => {
-    let playerMessage, computerMessage;
+    let choicesVs, result, tally;
+    let playerPoints = 0;
+    let computerPoints = 0;
     const choices = ['Rock', 'Paper', 'Scissors'];
     const round = (playerSelection) => {
         console.log(playerSelection);
@@ -37,9 +35,9 @@ const gameboard = (() => {
         computerChoice = randomComputer();
         const computerDiv = document.querySelector(`.right-column > div[data-number='${computerChoice}']`);
         transitionChoiceIn(playerDiv, computerDiv); //center everything, highlight choicess
-        //insert check winner function
-        console.log(playerDiv);
-        console.log(computerDiv);
+        compareChoices(playerChoice, computerChoice);
+        console.log(choicesVs);
+        console.log(result);
         playerMessage = 'dfskdjfksdjf';
         textTransition();
     
@@ -47,6 +45,27 @@ const gameboard = (() => {
     const randomComputer = () => {
         const randomN = [0, 1, 2];
         return randomN[Math.floor(Math.random() * randomN.length)];
+    }
+    const compareChoices = (player, computer) => {
+        let x = player - computer;
+        switch (x) {
+            case -2:
+            case 1:
+                choicesVs = `${choices[playerChoice]} beats ${choices[computerChoice]}`;
+                result = 'You Win!';
+                playerPoints += 1;
+                break;
+            case 2:
+            case -1:
+                choicesVs = `${choices[computerChoice]} beats ${choices[playerChoice]}`;
+                result = 'You Lose!';
+                computerPoints += 1;
+                break;
+            default:
+                choicesVs = `You both picked ${choices[playerChoice]}`;
+                result = 'Its a Tie!';
+        }
+        tally = `${playerPoints} - ${computerPoints}`
     }
     const transitionChoiceIn = (player, computer) => {
         boxes.forEach(div => div.classList.add('center'));
@@ -62,10 +81,12 @@ const gameboard = (() => {
             if (statementString !== '') {
             textdiv.textContent += statementString.charAt(0);
             statementString = statementString.substring(1);
-            setTimeout(textType, 100, statementString, statementDiv);
+            setTimeout(textType, 110, statementString, statementDiv);
             }
         }
-        textType(playerMessage, comparisonText);
+        textType(choicesVs, comparisonText);
+        setTimeout(textType, 2500, result, resultText);
+        setTimeout(textType, 4000, tally, tallyText);
     }
     /*function round(playerSelection) {
         if (playerPoints === 5) {
