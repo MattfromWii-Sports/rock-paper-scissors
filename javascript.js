@@ -1,9 +1,3 @@
-/*
-const gameWinner = document.getElementById('game-winner');
-const resetBtn = document.getElementById('reset-game');
-
-resetBtn.addEventListener('click', gameboard.resetAll);
-*/
 let playerChoice = undefined;
 let computerChoice = undefined;
 
@@ -19,6 +13,10 @@ const resultText = document.getElementById('result');
 const tallyText = document.getElementById('tally');
 const dialog = document.querySelector('.dialog-box');
 const boxes = document.querySelectorAll('.panel > .box');
+
+const gameWinner = document.getElementById('game-winner');
+const resetBtn = document.getElementById('reset-game');
+//resetBtn.addEventListener('click', gameboard.resetAll);
 //Make variables private, make modules work
 
 //Round
@@ -34,9 +32,9 @@ const gameboard = (() => {
         computerChoice = randomComputer();
         const computerDiv = document.querySelector(`.right-column > div[data-number='${computerChoice}']`);
         compareChoices(playerChoice, computerChoice);
-        textBoxTransition(playerDiv, computerDiv);
-    
+        textBoxTransition(playerDiv, computerDiv);  
     }
+
     const randomComputer = () => {
         const randomN = [0, 1, 2];
         return randomN[Math.floor(Math.random() * randomN.length)];
@@ -70,7 +68,7 @@ const gameboard = (() => {
             if (statementString !== '') {
             textdiv.textContent += statementString.charAt(0);
             statementString = statementString.substring(1);
-            setTimeout(textTypeOut, 110, statementString, statementDiv);
+            setTimeout(textTypeOut, 100, statementString, statementDiv);
             }
         }
         const textTypeIn = (textdiv2) => { //removes text letter by letter
@@ -86,57 +84,30 @@ const gameboard = (() => {
         textTypeOut(choicesVs, comparisonText);
         setTimeout(textTypeOut, 2500, result, resultText);
         setTimeout(textTypeOut, 4000, tally, tallyText);
-        setTimeout(textTypeIn, 5200, tallyText);
-        setTimeout(textTypeIn, 5600, resultText);
-        setTimeout(textTypeIn, 5900, comparisonText);
+        setTimeout(textTypeIn, 5500, tallyText);
+        setTimeout(textTypeIn, 5900, resultText);
+        setTimeout(textTypeIn, 6200, comparisonText);
         setTimeout(function() {
             boxes.forEach(div => div.classList.remove('center'));
             player.classList.remove('highlight');
             computer.classList.remove('highlight');
-        }, 6200);
+        }, 6500);
         setTimeout(function() {
             playerChoice = undefined;
             computerChoice = undefined;
-        }, 8000);
+            if (playerPoints > 0 || computerPoints > 0) winnerTrue(); //change 0 to 3 later
+        }, 8200);
     }
-    /*function round(playerSelection) {
-        if (playerPoints === 5) {
-            tally.textContent = '';
+    const winnerTrue = () => {
+        if (playerPoints > 0) { //change later
             gameWinner.textContent = 'You Won! :)'
             dialog.showModal();
-        } else if (computerPoints === 5) {
-            tally.textContent = '';
+        } else {
             gameWinner.textContent = 'The Computer Won! :('
             dialog.showModal();
-        } else if (stat === 'inactive') {
-            stat = 'active';
-            playerChoice = playerSelection;
-            computerChoice = randomComputer();
-            const playerDiv = document.querySelector(`div[data-type='${playerChoice}']`)
-            const computerDiv = document.querySelector(`div[data-type-cpu='${computerChoice}']`)
-            playerDiv.classList.add('highlight')
-            playerChoiceText.textContent = `You chose ${playerChoice}`;
-            setTimeout(function() {
-                computerDiv.classList.add('highlight');
-                computerChoiceText.textContent = `The Computer chose ${computerChoice}`;
-            }, 1500)
-            setTimeout(function() {
-                findWinner(playerChoice, computerChoice);
-            }, 2500)
-            setTimeout(function() {  
-                tally.textContent = `${playerPoints} -- ${computerPoints}`
-            }, 3600)
-            setTimeout(function() {
-                playerDiv.classList.remove('highlight');
-                computerDiv.classList.remove('highlight');
-                playerChoiceText.textContent = '';
-                computerChoiceText.textContent = '';
-                resultText.textContent = '';
-            }, 5000)
-            setTimeout(function() {stat = 'inactive'}, 5200);
         }
     }
-
+    /*
     function resetAll() {
         playerPoints = 0;
         computerPoints = 0;
