@@ -16,8 +16,7 @@ const boxes = document.querySelectorAll('.panel > .box');
 
 const gameWinner = document.getElementById('game-winner');
 const resetBtn = document.getElementById('reset-game');
-//resetBtn.addEventListener('click', gameboard.resetAll);
-//Make variables private, make modules work
+resetBtn.addEventListener('click', () => gameboard.resetAll());
 
 //Round
 const gameboard = (() => {
@@ -95,25 +94,23 @@ const gameboard = (() => {
         setTimeout(function() {
             playerChoice = undefined;
             computerChoice = undefined;
-            if (playerPoints > 0 || computerPoints > 0) winnerTrue(); //change 0 to 3 later
+            if (playerPoints >= 3 || computerPoints >= 3) winnerTrue();
         }, 8200);
     }
     const winnerTrue = () => {
-        if (playerPoints > 0) { //change later
+        if (playerPoints >= 3) { //change later
             gameWinner.textContent = 'You Won! :)'
             dialog.showModal();
         } else {
-            gameWinner.textContent = 'The Computer Won! :('
+            gameWinner.textContent = 'You Lost! :('
             dialog.showModal();
         }
     }
-    /*
-    function resetAll() {
+    const resetAll = () => {
         playerPoints = 0;
         computerPoints = 0;
         dialog.close();
     }
-    */
-    return {round};
+    return {round, resetAll};
 })();
 
